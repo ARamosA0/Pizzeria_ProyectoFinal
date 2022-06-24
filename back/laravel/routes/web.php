@@ -17,8 +17,6 @@ Route::get('/', function () {
     return view('app');
 });
 
-
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/ingredientes', [App\Http\Controllers\IngredienteController::class, 'index']);
@@ -45,3 +43,5 @@ Route::get('/tipos_ingredientes', [App\Http\Controllers\TipoIngredienteControlle
 Route::get('/tipos/{id}/agregaringrediente', [App\Http\Controllers\TipoIngredienteController::class, 'agregar']);
 Route::post('/tipos/insertingrediente', [App\Http\Controllers\TipoIngredienteController::class, 'guardar']);
 Route::post('/tipos/delete/{id}', [App\Http\Controllers\TipoController::class, 'delete']);
+Route::post('/tipos_ingrediente/delete/{id}', [App\Http\Controllers\TipoController::class, 'delete_ingrediente']);
+Route::post('/tipos/deleteingrediente', [App\Http\Controllers\TipoIngredienteController::class, 'delete']);

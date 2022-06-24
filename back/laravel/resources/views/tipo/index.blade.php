@@ -29,7 +29,7 @@
                         @endif
                     </td>
                     <td>
-                        <form action="tipo_ingrediente/delete/{{$tipo->ingrediente_id}}" method="POST">
+                        <form action="tipos_ingrediente/delete/{{$tipo->_id}}" method="POST">
                             <a href="tipos/{{$tipo->_id}}/agregaringrediente" type="button"
                                class="btn btn-secondary">Agregar ingrediente</a>
                             @csrf
