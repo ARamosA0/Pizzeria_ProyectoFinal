@@ -30,7 +30,7 @@ class TipoController extends Controller
         $tipo->rating=0;
         $tipo->save();
         return redirect('/tipos');
-        
+
     }
     public function edit($id)
     {
@@ -65,5 +65,16 @@ class TipoController extends Controller
     {
         return Excel::download(new TipoExport, 'tipo.xlsx');
     }
-
+    public function json()
+    {
+        $tipos= Tipo::with('tipo_ingrediente.ingredientes')->get();
+        return response()->json([
+            'success'=>true,
+            'tipos'=>$tipos
+        ]);
+        //$json = json_decode($tipos, true);
+        //$toJSON = json_encode($json, JSON_FORCE_OBJECT);
+        //$tipo=gettype($toJSON);
+        //dd($toJSON) ;
+    }
 }
