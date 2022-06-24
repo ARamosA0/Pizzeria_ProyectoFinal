@@ -7,6 +7,6 @@
             <label for="exampleInputEmail1" class="form-label">Nombre del ingrediente</label>
             <input type="text" class="form-control" id="nombre" name="nombre">
         </div>
-        <button type="submit" class="btn btn-secondary">Guardar ingrediente</button>
+        <button type="submit" class="btn btn-secondary yellow">Guardar ingrediente</button>
     </form>
 @endsection

@@ -4,7 +4,7 @@
     <form action="/tipos/insertingrediente" method="post">
         @csrf
         <div class="mb-3">
-            <label> ID DE LA PIZZA</label><br>
+            <label class="form-label"> ID DE LA PIZZA</label><br>
             <input type="text" class="form-control" id="tipo_id" name="tipo_id" value="{{$tipo_id}}">
         </div>
         <div class="mb-3">

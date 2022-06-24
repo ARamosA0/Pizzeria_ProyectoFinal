@@ -16,11 +16,6 @@
         CRUD PIZZERIA
     </title>
     <style>
-        @font-face {
-            font-family: 'RF Barbariska rough1 Oblique';
-            src: url('../../../../../RF Barbariska rough1 Oblique.ttf');
-            font-style: normal;
-        }
         h1{
             font-family: 'Indie Flower', cursive;
             background-color: #000000;
@@ -59,6 +54,7 @@
         }
         .yellow{
             background-color: #ba8b00;
+            margin-top: 1em;
         }
         .principal{
             display: flex;
@@ -72,6 +68,9 @@
             padding-bottom: 0.5em;
             color: #FFFFFF;
             text-align: center;
+        }
+        .form-label{
+            color:#1c7430;
         }
     </style>
 </head>

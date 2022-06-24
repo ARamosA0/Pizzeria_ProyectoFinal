@@ -15,6 +15,6 @@
             <label class="form-label">Link de la imagen de la pizza</label>
             <input type="text" class="form-control" id="link" name="link">
         </div>
-        <button type="submit" class="btn btn-secondary">Guardar pizza</button>
+        <button type="submit" class="btn btn-secondary yellow">Guardar pizza</button>
     </form>
 @endsection

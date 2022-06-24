@@ -2,7 +2,7 @@
 @section('contenido')
     <div class="select">
         <h3>
-            TIPOS
+            TIPOS DE PIZZA
         </h3>
     </div>
     <div class="btn principal">
@@ -28,7 +28,7 @@
                 <tr>
                     <th scope="row">{{$tipo->_id}}</th>
                     <td>{{$tipo->nombre}}</td>
-                    <td><img src="{{$tipo->link}}" width="50"></td>
+                    <td><img src="{{$tipo->link}}" width="60"></td>
                     <td>S/. {{$tipo->precio}}</td>
                     <td >
                         @if($tipo->tipo_ingrediente()->exists() && $tipo->tipo_ingrediente[0]->ingredientes()->exists())
