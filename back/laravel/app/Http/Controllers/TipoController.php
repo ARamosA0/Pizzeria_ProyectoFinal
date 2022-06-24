@@ -25,6 +25,7 @@ class TipoController extends Controller
     {
         $tipo = new Tipo();
         $tipo->nombre = $request->nombre;
+        $tipo->rating=0;
         $tipo->save();
         return redirect('/tipos');
     }
@@ -35,12 +36,15 @@ class TipoController extends Controller
         TipoIngrediente::where('tipo_id', $id)->delete();
         return redirect('/tipos');
     }
+    public function delete_ingrediente($id_pizza){
+        return view('tipo_ingrediente.delete')->with('id_pizza',$id_pizza);
+    }
     public function prueba()
     {
         $tipo=Tipo::with('ingredientes')->get();
         dd($tipo);
     }
-    public function export() 
+    public function export()
     {
         return Excel::download(new TipoExport, 'tipo.xlsx');
     }
