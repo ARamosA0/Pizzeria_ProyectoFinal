@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +11,27 @@
     <title>
         CRUD PIZZERIA
     </title>
+    <style>
+        @font-face {
+            font-family: 'RF Barbariska rough1 Oblique';
+            src: url('../../../../../RF Barbariska rough1 Oblique.ttf');
+            font-style: normal;
+        }
+        h1{
+            font-family: "RF Barbariska rough1 Oblique";
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            font-size: 5em;
+        }
+        #acciones{
+            margin-top: 0.5em;
+            align-items: baseline;
+        }
+        input{
+            text-transform: capitalize;
+        }
+    </style>
 </head>
 <body>
     <div class="container">

@@ -25,7 +25,23 @@ class TipoController extends Controller
     {
         $tipo = new Tipo();
         $tipo->nombre = $request->nombre;
+        $tipo->precio = $request->precio;
+        $tipo->link = $request->link;
         $tipo->rating=0;
+        $tipo->save();
+        return redirect('/tipos');
+    }
+    public function edit($id)
+    {
+        $edit = Tipo::find($id);
+        return view('tipo.edit')->with('edit', $edit);
+    }
+    public function update(Request $request,$id)
+    {
+        $tipo = Tipo::find($id);
+        $tipo->nombre=$request->nombre;
+        $tipo->precio=$request->precio;
+        $tipo->link = $request->link;
         $tipo->save();
         return redirect('/tipos');
     }
@@ -48,4 +64,5 @@ class TipoController extends Controller
     {
         return Excel::download(new TipoExport, 'tipo.xlsx');
     }
+
 }

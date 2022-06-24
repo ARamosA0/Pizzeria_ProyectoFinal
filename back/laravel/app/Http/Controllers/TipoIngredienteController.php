@@ -52,9 +52,9 @@ class TipoIngredienteController extends Controller
     public function prueba(Request $request)
     {
         $tipo_ingrediente = new TipoIngrediente();
-        $tipo_ingrediente->tipo_id= $request->tipo_id;
-        $ingrediente_id=Ingrediente::select('_id')->where('nombre',$request->nombre)->get();
+        $ingrediente_id=Ingrediente::where('nombre',$request->nombre)->get(['_id']);
         foreach($ingrediente_id as $ingrediente){
+            $tipo_ingrediente->tipo_id= $request->tipo_id;
             $tipo_ingrediente->ingrediente_id=$ingrediente;
             $tipo_ingrediente->save();
             return redirect('/tipos');

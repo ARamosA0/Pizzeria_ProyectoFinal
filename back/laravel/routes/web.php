@@ -39,9 +39,11 @@ Route::get('/ingredientes/prueba', [App\Http\Controllers\IngredienteController::
 Route::get('/tipos', [App\Http\Controllers\TipoController::class, 'index']);
 Route::get('/tipos/create', [App\Http\Controllers\TipoController::class, 'create']);
 Route::post('/tipos/insert', [App\Http\Controllers\TipoController::class, 'insert']);
-Route::get('/tipos_ingredientes', [App\Http\Controllers\TipoIngredienteController::class, 'index']);
+//Route::get('/tipos_ingredientes', [App\Http\Controllers\TipoIngredienteController::class, 'index']);
 Route::get('/tipos/{id}/agregaringrediente', [App\Http\Controllers\TipoIngredienteController::class, 'agregar']);
 Route::post('/tipos/insertingrediente', [App\Http\Controllers\TipoIngredienteController::class, 'guardar']);
 Route::post('/tipos/delete/{id}', [App\Http\Controllers\TipoController::class, 'delete']);
 Route::post('/tipos_ingrediente/delete/{id}', [App\Http\Controllers\TipoController::class, 'delete_ingrediente']);
+Route::get('/tipos/{id}/edit', [App\Http\Controllers\TipoController::class, 'edit']);
 Route::post('/tipos/deleteingrediente', [App\Http\Controllers\TipoIngredienteController::class, 'delete']);
+Route::post('/tipos/update/{id}', [App\Http\Controllers\TipoController::class, 'update']);
