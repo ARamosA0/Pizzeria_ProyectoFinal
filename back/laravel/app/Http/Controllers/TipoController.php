@@ -30,6 +30,7 @@ class TipoController extends Controller
         $tipo->rating=0;
         $tipo->save();
         return redirect('/tipos');
+        
     }
     public function edit($id)
     {
