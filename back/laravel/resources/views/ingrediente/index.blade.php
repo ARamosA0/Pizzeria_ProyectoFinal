@@ -1,16 +1,20 @@
 @extends('layouts.plantillabase')
 @section('contenido')
-    INGREDIENTES
+    <div class="select">
+        <h3>INGREDIENTES</h3>
+    </div>
 
-    <a type="button" href="ingredientes/create"class="btn btn-secondary m-4">Agregar ingrediente</a>
+    <div class="btn principal">
+        <a type="button" href="ingredientes/create"class="btn btn-secondary m-4 yellow">Agregar ingrediente</a>
+    </div>
 
     <div class="table-responsive">
         <table class="table table-striped table-bordered">
             <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Nombre del ingrediente</th>
-                <th scope="col">Acciones</th>
+                <th scope="col" class="green">NOMBRE</th>
+                <th scope="col" class="green">ACCIONES</th>
             </tr>
             </thead>
             <tbody>
@@ -20,9 +24,9 @@
                         <td>{{$ingrediente->nombre}}</td>
                         <td>
                             <form action="ingredientes/delete/{{$ingrediente->_id}}" method="POST">
-                                <a href="ingredientes/{{$ingrediente->_id}}/edit" type="button" class="btn btn-secondary">Editar</a>
+                                <a href="ingredientes/{{$ingrediente->_id}}/edit" type="button" id="acciones" class="btn btn-secondary">Editar</a>
                                 @csrf
-                                <button type="submit" class="btn btn-secondary">Eliminar</button>
+                                <button type="submit" class="btn btn-secondary delete" id="acciones">Eliminar</button>
                             </form>
                         </td>
                     </tr>
