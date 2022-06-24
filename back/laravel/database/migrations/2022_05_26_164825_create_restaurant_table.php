@@ -21,6 +21,9 @@ class CreateRestaurantTable extends Migration
         Schema::create('tipo', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->double('precio');
+            $table->string('link');
+            $table->int('rating')->default('0');
         });
 
         Schema::create('tipos_ingrediente', function (Blueprint $table) {
@@ -28,7 +31,7 @@ class CreateRestaurantTable extends Migration
             $table->string('tipo_id')->unsigned();
             $table->foreign('tipo_id')->references('_id')->on('tipo');
             $table->string('ingrediente_id');
-            $table->int('rating')->default('0');
+
         });
 
         Schema::create('producto', function (Blueprint $table) {
