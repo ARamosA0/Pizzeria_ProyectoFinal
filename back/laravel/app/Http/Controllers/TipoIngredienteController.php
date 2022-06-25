@@ -60,4 +60,13 @@ class TipoIngredienteController extends Controller
             return redirect('/tipos');
         }
     }
+
+    public function getTipoIngrediente()
+    {
+        $tipo_ingrediente = TipoIngrediente::all();
+        return response()->json([
+            'success'=>true,
+            'content'=>$tipo_ingrediente
+        ]);
+    }
 }

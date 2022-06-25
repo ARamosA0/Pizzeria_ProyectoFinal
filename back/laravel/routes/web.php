@@ -47,3 +47,12 @@ Route::post('/tipos_ingrediente/delete/{id}', [App\Http\Controllers\TipoControll
 Route::get('/tipos/{id}/edit', [App\Http\Controllers\TipoController::class, 'edit']);
 Route::post('/tipos/deleteingrediente', [App\Http\Controllers\TipoIngredienteController::class, 'delete']);
 Route::post('/tipos/update/{id}', [App\Http\Controllers\TipoController::class, 'update']);
+
+
+
+// API PRODUCTO
+Route::get('/productos',[App\Http\Controllers\ProductoController::class, 'getProductos']);
+
+
+Route::get('/tipo/get',[App\Http\Controllers\TipoController::class, 'getTipo']);
+Route::get('/tipoingrediente/get',[App\Http\Controllers\TipoIngredienteController::class, 'getTipoIngrediente']);

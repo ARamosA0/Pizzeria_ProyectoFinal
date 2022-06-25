@@ -35,12 +35,13 @@ def get_ingrediente(id):
     response = json_util.dumps(ingrediente)
     return Response(response,mimetype='application/json')
 
-# @app.route('/getTipos', methods=['GET'])
-# def getIngredientes():
-#     ingrediente = mongo.db.ingrediente.find()
-#     response = json_util.dumps(ingrediente)
+@app.route('/tipos', methods=['GET'])
+def getTipos():
+    tipo = mongo.db.tipo.find()
+    response = json_util.dumps(tipo)
+    print(tipo)
     
-#     return Response(response,mimetype='application/json')
+    return Response(response,mimetype='application/json')
 
 
 

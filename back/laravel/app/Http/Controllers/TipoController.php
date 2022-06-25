@@ -66,4 +66,13 @@ class TipoController extends Controller
         return Excel::download(new TipoExport, 'tipo.xlsx');
     }
 
+    public function getTipo()
+    {
+        $tipo = Tipo::all();
+        return response()->json([
+            'success'=>true,
+            'content'=>$tipo
+        ]);
+    }
+
 }

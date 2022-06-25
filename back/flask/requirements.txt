@@ -2,3 +2,5 @@ flask
 flask-pymongo
 pymongo
 pandas
+scikit-learn
+matplotlib
