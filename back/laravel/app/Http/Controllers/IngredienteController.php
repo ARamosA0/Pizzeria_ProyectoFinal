@@ -47,7 +47,7 @@ class IngredienteController extends Controller
         return redirect('/ingredientes');
     }
 
-    public function export() 
+    public function export()
     {
         return Excel::download(new IngredientesExport, 'ingredientes.xlsx');
     }
@@ -55,5 +55,13 @@ class IngredienteController extends Controller
     {
         $ingrediente=Ingrediente::with('tipo')->get();
         dd($ingrediente);
+    }
+    public function json()
+    {
+        $ingredientes= Ingrediente::all();
+        return response()->json([
+            'success'=>true,
+            'ingredientes'=>$ingredientes
+        ]);
     }
 }

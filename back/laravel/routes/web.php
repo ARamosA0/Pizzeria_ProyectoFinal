@@ -25,6 +25,8 @@ Route::post('/ingredientes/insert', [App\Http\Controllers\IngredienteController:
 Route::get('/ingredientes/{id}/edit', [App\Http\Controllers\IngredienteController::class, 'edit']);
 Route::post('/ingredientes/update/{id}', [App\Http\Controllers\IngredienteController::class, 'update']);
 Route::post('/ingredientes/delete/{id}', [App\Http\Controllers\IngredienteController::class, 'delete']);
+Route::get('/ingredientes/json', [App\Http\Controllers\IngredienteController::class, 'json']);
+
 
 Route::get('/busqueda', [App\Http\Controllers\BusquedaController::class, 'index']);
 
@@ -56,3 +58,4 @@ Route::get('/productos',[App\Http\Controllers\ProductoController::class, 'getPro
 
 Route::get('/tipo/get',[App\Http\Controllers\TipoController::class, 'getTipo']);
 Route::get('/tipoingrediente/get',[App\Http\Controllers\TipoIngredienteController::class, 'getTipoIngrediente']);
+Route::get('/tipos/json', [App\Http\Controllers\TipoController::class, 'json']);
