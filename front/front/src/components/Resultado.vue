@@ -51,7 +51,7 @@
     <v-divider class="mx-4"></v-divider>
 
     <v-card-text>
-      <v-chip>S/. 30.00</v-chip>
+      <v-chip></v-chip>
     </v-card-text>
 
     <v-card-actions>
@@ -67,18 +67,33 @@
 </template>
 
 <script>
+import axios from "axios";
   export default {
     data: () => ({
       loading: false,
-      selection: 1
+      selection: 1,
+      tipoPizza:[]
     }),
+
 
     methods: {
       reserve () {
         this.loading = true
 
         setTimeout(() => (this.loading = false), 2000)
+      
       },
+      async obtTiposPizza () {
+       await axios.get("http://127.0.0.1:8000/tipos/json").then((result) => {
+        this.tipoPizza = result.data;
+        console.log(this.tipoPizza)
+      // console.log(result.data);
+    })
+
+      }
     },
+    created() {
+      this.obtTiposPizza();
+    }
   }
 </script>

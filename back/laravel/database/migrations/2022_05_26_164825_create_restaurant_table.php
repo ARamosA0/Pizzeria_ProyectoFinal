@@ -36,12 +36,10 @@ class CreateRestaurantTable extends Migration
 
         Schema::create('producto', function (Blueprint $table) {
             $table->id();
-            $table->string('idTipo');
-            $table->foreign('tipo_id')->references('_id')->on('tipos_ingrediente');
+            $table->string('tipo_id');
             $table->string('tamno');
             $table->double('precio');
-            $table->timestamps();
-
+            $table->foreign('tipo_id')->references('_id')->on('tipos_ingrediente');
         });
 
         Schema::create('pedido', function (Blueprint $table) {
@@ -50,8 +48,6 @@ class CreateRestaurantTable extends Migration
             $table->string('idUsuario');
             $table->float('costoTotal');
             $table->string('pedido_id');
-            $table->timestamps();
-
         });
 
 

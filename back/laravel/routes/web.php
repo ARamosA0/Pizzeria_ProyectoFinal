@@ -56,6 +56,5 @@ Route::post('/tipos/update/{id}', [App\Http\Controllers\TipoController::class, '
 Route::get('/productos',[App\Http\Controllers\ProductoController::class, 'getProductos']);
 
 
-Route::get('/tipo/get',[App\Http\Controllers\TipoController::class, 'getTipo']);
 Route::get('/tipoingrediente/get',[App\Http\Controllers\TipoIngredienteController::class, 'getTipoIngrediente']);
 Route::get('/tipos/json', [App\Http\Controllers\TipoController::class, 'json']);

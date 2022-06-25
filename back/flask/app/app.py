@@ -35,9 +35,9 @@ def get_ingrediente(id):
     response = json_util.dumps(ingrediente)
     return Response(response,mimetype='application/json')
 
-@app.route('/tipos', methods=['GET'])
+@app.route('/tiposingrediente', methods=['GET'])
 def getTipos():
-    tipo = mongo.db.tipo.find()
+    tipo = mongo.db.tipos_ingrediente.find()
     response = json_util.dumps(tipo)
     print(tipo)
     

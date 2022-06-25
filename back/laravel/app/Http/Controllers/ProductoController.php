@@ -22,12 +22,17 @@ class ProductoController extends Controller
         ]);
     }
 
-    public function postProductos()
+    public function postProductos(Request $request)
     {
         $productos = new Producto();
-        $producto->
+        $producto->tipo_id = $request->tipo_id;
         $producto->tamano = $request->tamano;
         $producto->precio = $request->precio;
+        $producto->save();
+        return response()->json([
+            'success'=>true,
+            'content'=>$productos
+        ]);
     }
 
     public function export() 
