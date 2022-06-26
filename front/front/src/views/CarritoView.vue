@@ -1,4 +1,5 @@
 <template>
+<Navar/>
 <div>
   <v-card
     class="mx-auto card"
@@ -65,12 +66,32 @@
 </template>
 
 <script>
-    export default{
-        name:'carrito',
-    }
+import Navar from "../components/Navar.vue";
+
+export default {
+  name:'carrito',
+  data: () => ({
+    show: false,
+  }),
+
+
+  methods: {
+    reserve () {
+      this.loading = true
+
+      setTimeout(() => (this.loading = false), 2000)
+    },
+  },
+  name: "CarritoView",
+  components: {
+    Navar,
+
+  },
+}
 </script>
 
-<style>
+
+<style scoped>
     .card{
         margin-top: 3em;
     }
@@ -85,4 +106,7 @@
     .card-text-precio{
         margin-right: 2em;
     }
-</style>
+
+
+
+
