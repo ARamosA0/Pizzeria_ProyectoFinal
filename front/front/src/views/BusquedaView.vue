@@ -33,10 +33,10 @@
                         sm="4"
                         md="4">
                         <v-checkbox
-                          v-model="ex4"
-                          :label="ing"
+                          v-model="selected"
+                          :label="ing.nombre"
                           color="red darken-3"
-                          value="red"
+                          :value="ing.nombre"
                           hide-details
                         ></v-checkbox>
                     </v-col>
@@ -46,7 +46,6 @@
             </v-container>
           </v-card-text>
         </v-card>
-        
         <v-btn
           color="primary"
           @click="e1 = 2"
@@ -57,6 +56,7 @@
         <v-btn text>
           Cancel
         </v-btn>
+        
       </v-stepper-content>
 
       <v-stepper-content step="2">
@@ -128,7 +128,7 @@
 
     <v-img
       height="250"
-      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+      :src="i.link"
     ></v-img>
 
     <v-card-title>{{i.nombre}}</v-card-title>
@@ -139,33 +139,30 @@
         class="mx-0"
       >
         <v-rating
-          :value="4"
+          :value="i.rating"
           color="amber"
           background-color="amber"
           dense
           readonly
           size="14"
         ></v-rating>
-
-        <div class="grey--text ms-4">
-          4 (413)
-        </div>
       </v-row>
 
       <div class="my-4 text-subtitle-1">
         $ Ingredientes
       </div>
 
-      <ul>
-        <li>Salsa de tomate</li>
-        <li>Salsa de tomate</li>
-      </ul>
+        <div
+        v-for="j in tipoIngrediente"
+        >
+            <p>- {{j}}</p>
+        </div>
     </v-card-text>
 
     <v-divider class="mx-4"></v-divider>
 
     <v-card-text>
-      <v-chip></v-chip>
+      <v-chip>S/.{{i.precio}}</v-chip>
     </v-card-text>
 
     <v-card-actions>
@@ -181,8 +178,6 @@
         </v-col>
         
     </v-row>
-
-
 </div>
 </template>
 
@@ -208,52 +203,55 @@ import axios from "axios";
 
 export default {
     name: 'busqueda',
+        
     data () {
       return {
         e1: 1,
-        ingredientes: [
-            'peperoni',
-            'mozzarella',
-            'tomate',
-            'albahaca',
-            'parmesano',
-            'gorgonzola',
-            'fontina',
-            'salame',
-            'jamon',
-            'salsa de tomate',
-            'champiñones',
-            'aceitunas',
-            'piña',
-            'cebolla',
-            'anchoas'],
         tamanos: [
             'pequeno',
             'mediano',
             'grande',
             'extra-grande'
         ],
-        tipoPizza:[]
+        tipoPizza:[],
+        tipoIngrediente:[],
+        tipo:[],
+        ingredientes:[],
+        selected:[],
       }
     },
     methods: {
       reserve () {
         this.loading = true
-
+        console.log(ex4)
         setTimeout(() => (this.loading = false), 2000)
       
       },
       async obtTiposPizza () {
        await axios.get("http://127.0.0.1:8000/tipos/json").then((result) => {
         this.tipoPizza = result.data.tipos;
+        this.tipoIngrediente = result.data.tipos.map((ing) =>{
+          return ing.tipo_ingrediente
+        })
+        this.tipo = this.tipoIngrediente.map((i, index)=>{
+          return i[index]
+        })
+        this.ingredientes = this.tipo.map(i=>{i})
         console.log(this.tipoPizza)
-        console.log(result.data);
+        console.log(this.tipoIngrediente)
+        console.log(this.tipo)
+        console.log(this.ingredientes)
     })
+      },
+      async obIngredientes (){
+        await axios.get("http://127.0.0.1:5000/api/ingredientes").then((result)=>{
+          this.ingredientes = result.data;
+        })
+      },
 
-      }
     },
     created() {
-      // this.obtTiposPizza();
+      this.obIngredientes();
     }
     // components: {
     //   Resultado,

@@ -39,7 +39,7 @@ class CreateRestaurantTable extends Migration
             $table->string('tipo_id');
             $table->string('tamno');
             $table->double('precio');
-            $table->foreign('tipo_id')->references('_id')->on('tipos_ingrediente');
+            $table->foreign('tipo_id')->references('_id')->on('tipos');
         });
 
         Schema::create('pedido', function (Blueprint $table) {
@@ -49,6 +49,13 @@ class CreateRestaurantTable extends Migration
             $table->float('costoTotal');
             $table->string('pedido_id');
         });
+
+        // Schema::busqueda('busqueda', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('ingredientes');
+        //     $table->string('tamano');
+        //     $table->int('rating');
+        // });
 
 
     }
