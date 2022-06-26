@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('app');
 });
-
+Route::post('/loginVue', [App\Http\Controllers\LoginController::class, 'login']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/ingredientes', [App\Http\Controllers\IngredienteController::class, 'index']);
