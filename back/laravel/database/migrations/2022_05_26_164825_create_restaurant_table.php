@@ -45,9 +45,7 @@ class CreateRestaurantTable extends Migration
         Schema::create('pedido', function (Blueprint $table) {
             $table->id();
             $table->string('idProducto');
-            $table->string('idUsuario');
-            $table->float('costoTotal');
-            $table->string('pedido_id');
+            $table->foreign('idProducto')->references('_id')->on('producto');
         });
 
         // Schema::busqueda('busqueda', function (Blueprint $table) {

@@ -1,6 +1,7 @@
 <template>
-<Navar/>
+
 <div>
+<Navar/>
   <v-card
     class="mx-auto card"
     max-width="1200"
@@ -62,11 +63,13 @@
     COMPRAR
 </v-btn>
 
+<FooterVue/>
 </div>
 </template>
 
 <script>
 import Navar from "../components/Navar.vue";
+import FooterVue from "@/components/Footer.vue";
 
 export default {
   name:'carrito',
@@ -85,6 +88,7 @@ export default {
   name: "CarritoView",
   components: {
     Navar,
+    FooterVue
 
   },
 }

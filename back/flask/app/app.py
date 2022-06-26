@@ -101,6 +101,28 @@ def getProducto():
     response = json_util.dumps(producto)
     return Response(response, mimetype="application/json")
 
+@app.route('/api/pedido', methods=['GET'])
+def getPedido():
+    pedido = mongo.db.pedido.find()
+    response = json_util.dumps(pedido)
+    return Response(response, mimetype="application/json")
+
+@app.route('/api/pedido', methods=['POST'])
+def setPedido():
+    idProducto = request.json['idProducto']
+    costoTotal = request.json['costoTotal']
+    if idProducto and costoTotal:
+        id = mongo.db.pedido.insert_one(
+            {
+            "idProducto":idProducto, 
+            }
+        )
+        response = jsonify({
+            "_id":str(id),
+            "idProducto":idProducto
+        })
+        return response
+
 
 if __name__ == "__main__":
     app.run(debug=True)

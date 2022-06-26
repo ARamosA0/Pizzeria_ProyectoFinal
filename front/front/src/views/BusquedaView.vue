@@ -112,8 +112,8 @@
         <v-col
         v-for="i in tipoPizza"
         cols="12"
-        lg="4"
-        md="4">
+        lg="3"
+        md="3">
         <v-card
     :loading="loading"
     class="mx-auto my-12"
@@ -152,12 +152,12 @@
       <div class="my-4 text-subtitle-1">
         $ Ingredientes
       </div>
-
-        <div
-        v-for="j in tipoIngrediente"
+      <ul>
+        <li
+        v-for="j in i.tipo_ingrediente"
         >
-            <p>- {{j}}</p>
-        </div>
+        {{j.ingredientes[0].nombre}}</li>
+      </ul>
     </v-card-text>
 
     <v-divider class="mx-4"></v-divider>
@@ -179,6 +179,8 @@
         </v-col>
         
     </v-row>
+
+  <FooterVue/>
 </div>
 </template>
 
@@ -200,7 +202,8 @@
 
 <script>
 import axios from "axios";
-// import Resultado from '../components/Resultado.vue'
+import Navar from "../components/Navar.vue";
+import FooterVue from "@/components/Footer.vue";
 
 export default {
     name: 'busqueda',
@@ -215,8 +218,6 @@ export default {
             'extra-grande'
         ],
         tipoPizza:[],
-        tipoIngrediente:[],
-        tipo:[],
         ingredientes:[],
         selected:[],
       }
@@ -231,17 +232,11 @@ export default {
       async obtTiposPizza () {
        await axios.get("http://127.0.0.1:8000/tipos/json").then((result) => {
         this.tipoPizza = result.data.tipos;
-        this.tipoIngrediente = result.data.tipos.map((ing) =>{
-          return ing.tipo_ingrediente
-        })
-        this.tipo = this.tipoIngrediente.map((i, index)=>{
-          return i[index]
-        })
-        this.ingredientes = this.tipo.map(i=>{i})
+
         console.log(this.tipoPizza)
-        console.log(this.tipoIngrediente)
-        console.log(this.tipo)
-        console.log(this.ingredientes)
+
+        
+
     })
       },
       async obIngredientes (){
@@ -249,14 +244,16 @@ export default {
           this.ingredientes = result.data;
         })
       },
-
+      
     },
     created() {
       this.obIngredientes();
-    }
-    // components: {
-    //   Resultado,
-    // },
+    },
+  components: {
+    Navar,
+    FooterVue
+
+  },
 };
 </script>
 
