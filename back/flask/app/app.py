@@ -59,34 +59,34 @@ def getTipos():
     # tipoIngredientes = mongo.db.tipos_ingrediente.find_one({'_id':ObjectId(tipoid)})
     ingrediente = mongo.db.ingrediente.find()
     # tipoI = tipoIngredientes
-    response = json_util.dumps(tipoid)
+    response = json_util.dumps(tipo)
     return Response(response,mimetype='application/json')
     
 
-@app.route('/api/ing', methods=['POST'])
-def getInfo():
-    ing = request.form['nm']
-    response = json_util.dumps({
-        "ingredientes":[],
-        "tamano":"",
-        "ratig":0,
-    })
-    return Response(response,mimetype='application/json')
+# @app.route('/api/ing', methods=['POST'])
+# def getInfo():
+#     ing = request.form['nm']
+#     response = json_util.dumps({
+#         "ingredientes":[],
+#         "tamano":"",
+#         "ratig":0,
+#     })
+#     return Response(response,mimetype='application/json')
 
 
 @app.route('/api/producto/', methods=['POST'])
-def setProducto(id,tamano,precio):
+def setProducto():
     tipo_id = request.json['tipo_id']
     tamano = request.json['tamano']
     precio = request.json['precio']
     if tipo_id and tamano and precio:
-        prod = mongo.db.producto.insert({
+        id = mongo.db.producto.insert_one(
             {
             "tipo_id":tipo_id,
             "tamano":tamano,
             "precio":precio
             }
-        })
+        )
         response = jsonify({
             '_id':str(id),
             'tipo_id':tipo_id,

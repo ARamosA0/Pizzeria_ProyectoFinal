@@ -1,5 +1,6 @@
 <template>
 <div>
+  <Navar/>
   <v-stepper v-model="e1">
     <v-stepper-header>
       <v-stepper-step
