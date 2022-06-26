@@ -53,10 +53,6 @@
         >
           Continue
         </v-btn>
-
-        <v-btn text>
-          Cancel
-        </v-btn>
         
       </v-stepper-content>
 
@@ -69,7 +65,7 @@
                   lg="4"
                 >
                     <v-select
-                      v-model="variant"
+                      v-model="tam"
                       :items="tamanos"
                       clearable
                       label="TAMANOS"
@@ -99,7 +95,10 @@
           Buscar
         </v-btn>
 
-        <v-btn text>
+        <v-btn 
+        text
+        @click="e1 = 1"
+        >
           Cancel
         </v-btn>
       </v-stepper-content>
@@ -110,7 +109,7 @@
     <v-row 
         >
         <v-col
-        v-for="i in tipoPizza"
+        v-for="i in filterTipo"
         cols="12"
         lg="3"
         md="3">
@@ -218,8 +217,13 @@ export default {
             'extra-grande'
         ],
         tipoPizza:[],
+        tipoIngrediente:[],
         ingredientes:[],
         selected:[],
+        tam:[],
+        ing:[],
+        filterTipo:[],
+        rating:[],
       }
     },
     methods: {
@@ -233,10 +237,18 @@ export default {
        await axios.get("http://127.0.0.1:8000/tipos/json").then((result) => {
         this.tipoPizza = result.data.tipos;
 
-        console.log(this.tipoPizza)
+        // console.log(this.tipoPizza)
 
-        
+        // this.filterTipo = this.tipoPizza.filter(function(tipo){
+        //     const ingFiltrado = tipo.tipo_ingrediente.map((j)=>j.ingredientes[0].nombre)
+        //     return ingFiltrado.includes('peperoni')
+        // })
 
+        this.filterTipo = this.tipoPizza.filter(tipo=>tipo.tipo_ingrediente.some(i=>i.ingredientes[0].nombre.includes(this.selected[0]||this.selected[1]||this.selected[2]||this.selected[3]||this.selected[4]))
+            
+        )
+        console.log(this.filterTipo)
+        console.log(this.selected)
     })
       },
       async obIngredientes (){
