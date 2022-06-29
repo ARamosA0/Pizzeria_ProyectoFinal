@@ -55,9 +55,19 @@ def getTiposIngredientes():
 @app.route('/api/tipos', methods=['GET'])
 def getTipos():
     tipo = mongo.db.tipo.find()
-    tipoid = mongo.db.tipo.find({},{"_id":1})
+    # tipoid = mongo.db.tipo.find({},{"_id":1})
     # tipoIngredientes = mongo.db.tipos_ingrediente.find_one({'_id':ObjectId(tipoid)})
-    ingrediente = mongo.db.ingrediente.find()
+    # ingrediente = mongo.db.ingrediente.find()
+    # tipoI = tipoIngredientes
+    response = json_util.dumps(tipo)
+    return Response(response,mimetype='application/json')
+
+@app.route('/api/tipos/<id>', methods=['GET'])
+def getTiposId(id):
+    tipo = mongo.db.tipo.find_one_or_404({'_id':ObjectId(id)})
+    # tipoid = mongo.db.tipo.find({},{"_id":1})
+    # tipoIngredientes = mongo.db.tipos_ingrediente.find_one({'_id':ObjectId(tipoid)})
+    # ingrediente = mongo.db.ingrediente.find()
     # tipoI = tipoIngredientes
     response = json_util.dumps(tipo)
     return Response(response,mimetype='application/json')
@@ -101,6 +111,12 @@ def getProducto():
     response = json_util.dumps(producto)
     return Response(response, mimetype="application/json")
 
+@app.route('/api/producto/<id>', methods=['GET'])
+def getProductoId(id):
+    producto = mongo.db.producto.find_one_or_404({'_id':ObjectId(id)})
+    response = json_util.dumps(producto)
+    return Response(response, mimetype="application/json")
+
 @app.route('/api/pedido', methods=['GET'])
 def getPedido():
     pedido = mongo.db.pedido.find()
@@ -110,8 +126,7 @@ def getPedido():
 @app.route('/api/pedido', methods=['POST'])
 def setPedido():
     idProducto = request.json['idProducto']
-    costoTotal = request.json['costoTotal']
-    if idProducto and costoTotal:
+    if idProducto:
         id = mongo.db.pedido.insert_one(
             {
             "idProducto":idProducto, 

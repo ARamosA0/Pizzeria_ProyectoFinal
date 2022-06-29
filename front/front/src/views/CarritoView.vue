@@ -1,15 +1,17 @@
 <template>
-
 <div>
+<v-container fluid>
 <Navar/>
   <v-card
+
     class="mx-auto card"
     max-width="1200"
   >
-  <div class="card-element-carrito">
+  <div 
+  class="card-element-carrito">
         <v-img
             src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="250px"
+            height="250"
             max-width="250"
             ></v-img>
         <div>
@@ -62,30 +64,53 @@
 >
     COMPRAR
 </v-btn>
-
+</v-container>
 <FooterVue/>
 </div>
 </template>
 
 <script>
+import axios from "axios";
 import Navar from "../components/Navar.vue";
 import FooterVue from "@/components/Footer.vue";
 
 export default {
-  name:'carrito',
+  name:'CarritoView',
   data: () => ({
     show: false,
+    return :{
+      pedido:[],
+      producto:[]
+    }
   }),
 
 
   methods: {
     reserve () {
       this.loading = true
-
       setTimeout(() => (this.loading = false), 2000)
     },
+    async obPedido (){
+      await axios.get("http://127.0.0.1:5000/api/pedido").then((result)=>{
+        this.pedido = result.data
+        console.log(result.data)
+      })
+    },
+    
+    async obProducto (){
+      await axios.post("http://127.0.0.1:5000/api/producto",{
+        "idProducto":""
+      }).then((result)=>{
+        this.producto = result.data
+        
+      })
+    }
+
+  
   },
-  name: "CarritoView",
+  created() {
+    this.obPedido();
+  },
   components: {
     Navar,
     FooterVue
@@ -101,16 +126,16 @@ export default {
     }
     .card-element-carrito{
         display: flex;
+        justify-content: space-between;
     }
     .card-card-text{
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         border-color: black;
+        margin-top: 3em;
     }
     .card-text-precio{
         margin-right: 2em;
     }
 
-
-
-
+</style>
