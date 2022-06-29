@@ -2,3 +2,7 @@ flask
 flask-pymongo
 pymongo
 pandas
+scikit-learn
+matplotlib
+flask-cors
+requests
