@@ -63,5 +63,6 @@ class IngredienteController extends Controller
             'success'=>true,
             'ingredientes'=>$ingredientes
         ]);
+        
     }
 }
