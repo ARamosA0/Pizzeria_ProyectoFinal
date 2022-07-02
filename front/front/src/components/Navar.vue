@@ -6,7 +6,7 @@
     <v-btn  to="/home" color="#00C853" > Home </v-btn>
 
 
-    <v-btn  to="/buscar"  color="#D32F2F"> Buscar </v-btn>
+    <v-btn  to="/busqueda"  color="#D32F2F"> Buscar </v-btn>
 
 
     <v-btn  to="/carrito" color="#F9A825"> Carrito </v-btn>
