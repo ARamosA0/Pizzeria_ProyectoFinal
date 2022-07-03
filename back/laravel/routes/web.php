@@ -50,8 +50,6 @@ Route::get('/tipos/{id}/edit', [App\Http\Controllers\TipoController::class, 'edi
 Route::post('/tipos/deleteingrediente', [App\Http\Controllers\TipoIngredienteController::class, 'delete']);
 Route::post('/tipos/update/{id}', [App\Http\Controllers\TipoController::class, 'update']);
 
-
-
 // API PRODUCTO
 Route::get('/productos',[App\Http\Controllers\ProductoController::class, 'getProductos']);
 
