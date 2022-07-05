@@ -32,7 +32,7 @@
               <v-card-actions class="text--secondary">
                 <v-checkbox color="#000000" label="Recordar contraseña"></v-checkbox>
                 <v-spacer></v-spacer>
-                <v-btn href="#" class="pl-2" style="color: #000000" >Registrate</v-btn>
+                <v-btn href="#" class="pl-2" style="color: #000000" to="/register">Registrate </v-btn>
               </v-card-actions>
             </v-form>
           </v-card-text>

@@ -17,7 +17,7 @@
             </v-icon>
 
           </v-list-item-subtitle>
-          <v-btn class="" to="/pizza" color="#D32F2F">
+          <v-btn class="" to="/busqueda" color="#D32F2F">
             Ordenar ahora
           </v-btn>
         </v-list-item-title>

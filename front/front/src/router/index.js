@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 import LoginView from '../views/LoginView.vue'
 import HomeView from '../views/HomeView.vue'
-
+import RegisterView from '../views/RegisterView.vue'
 Vue.use(VueRouter)
 
 
@@ -38,6 +38,13 @@ const routes = [{
         component: () =>
             import ('../views/CarritoView.vue')
     },
+    {
+        path: '/register',
+        name: 'register',
+        component: () =>
+            import ('../views/RegisterView.vue')
+    },
+
 
 ]
 

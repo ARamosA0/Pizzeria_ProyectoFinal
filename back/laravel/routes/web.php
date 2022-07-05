@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('app');
 });
 Route::post('/loginVue', [App\Http\Controllers\LoginController::class, 'login']);
+Route::post('/registerVue', [App\Http\Controllers\RegisterController::class, 'register']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/ingredientes', [App\Http\Controllers\IngredienteController::class, 'index']);
