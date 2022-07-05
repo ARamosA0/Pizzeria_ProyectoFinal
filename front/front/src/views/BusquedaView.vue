@@ -32,7 +32,7 @@
             </v-card-text>
           </v-card>
           <v-btn
-            color="primary"
+            color="#FF9100"
             @click="obtTiposPizza()"
           >
             Buscar
@@ -54,7 +54,7 @@
                     <v-rating
                       v-model="rating"
                       background-color="amber"
-                      color="ambewr"
+                      color="amber"
                       length="10"
                       large
                     ></v-rating>
@@ -62,21 +62,21 @@
             </row>
         <v-btn
           class="btn-busqueda-raiting"
-          color="primary"
+          color="#FF9100"
           @click="buscRating()"
         >
           Buscar
         </v-btn>
         <v-btn
           class="btn-busqueda-raiting"
-          color="primary"
+          color="#FF9100"
           @click="buscMax()"
         >
           Maximo
         </v-btn>
         <v-btn
           class="btn-busqueda-raiting"
-          color="primary"
+          color="#FF9100"
           @click="buscMin()"
         >
           Minimo
@@ -587,9 +587,9 @@ export default {
     //   })
     // },
     async anadirProducto(id, precio){
-      await axios.get(`http://127.0.0.1:5000/api/tipos/${id}`).then((result)=>{
-        this.tipoPizzaid = result.data;
-        // console.log(this.tipoPizzaid)
+      await axios.get(`http://127.0.0.1:5000/api/tipos/${id}`).then((result)=>{        
+        this.tipoPizzaid.push(result.data);
+
         localStorage.setItem('tipoPizzaId',JSON.stringify(this.tipoPizzaid))
       })
       console.log(id);

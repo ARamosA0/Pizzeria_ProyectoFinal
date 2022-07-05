@@ -34,24 +34,14 @@
                       </div>
                       <v-text-field 
                       v-model="cantidad"
-                      @change=""
+                      label="*Cantidad*"
+                      @change="changeInput(ped.precio)"
                       class="card-text-precio">
-                        <v-icon
-                          slot="append"
-                          color="red"
-                        >
-                          mdi-plus
-                        </v-icon>
-                        <v-icon
-                          slot="prepend"
-                          color="green"
-                        >
-                          mdi-minus
-                        </v-icon>
+                    
                       </v-text-field>
                       <div class="card-text-precio">
                           <p>SubTotal</p>
-                          <p>S/. 30.00</p>
+                          <p>S/. {{precioTotal}}</p>
                       </div>
                   </v-card-text>
               </div>
@@ -59,6 +49,7 @@
                   <v-btn
                       color="red"
                       text
+                      @click="borrar(ped)"
                   >
                       Borrar
                   </v-btn>
@@ -71,8 +62,9 @@
   </v-row>
 
 <v-btn
-    color="blue"
-    text
+    class="btn-comprar"
+    depressed
+    color="#F9A825"
 >
     COMPRAR
 </v-btn>
@@ -90,10 +82,11 @@ export default {
   name:'CarritoView',
   data: () => ({
     show: false,
+    precioTotal:1,
     return :{
       pedido:[],
       producto:[],
-      cantidad:0
+      cantidad:1,
     }
   }),
 
@@ -104,12 +97,10 @@ export default {
       setTimeout(() => (this.loading = false), 2000)
     },
     obPedido (){
-      // await axios.get("http://127.0.0.1:5000/api/pedido").then((result)=>{
-        // this.pedido = result.data
         const retObjet = localStorage.getItem('tipoPizzaId')
-        this.pedido = [JSON.parse(retObjet)]
+        this.pedido = JSON.parse(retObjet)
         console.log(this.pedido)
-        console.log(this.cantidad)
+        // console.log(this.cantidad)
       },
     async obProducto (){
       await axios.post("http://127.0.0.1:5000/api/producto",{
@@ -118,6 +109,21 @@ export default {
         this.producto = result.data
         
       })
+    },
+    changeInput(precio){
+      this.precioTotal = this.cantidad * parseInt(precio)
+      console.log(this.precioTotal)
+      
+    },
+
+    async borrar(nombre){
+      const index = this.pedido.indexOf(nombre)
+      if(index !== -1){
+        await this.pedido.splice(index,1)
+      }
+      // console.log(this.pedido);
+      await localStorage.setItem('tipoPizzaId',JSON.stringify(this.pedido))
+      this.obPedido()
     }
       
   },
@@ -150,6 +156,9 @@ export default {
     }
     .card-text-precio{
         margin-right: 2em;
+    }
+    .btn-comprar{
+      margin-top: 20px;
     }
 
 </style>
