@@ -26,7 +26,6 @@ class User extends Eloquent implements Authenticatable
         'dni',
         'telefono',
         'direccion',
-        'email',
         'password',
     ];
 

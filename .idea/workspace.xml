@@ -31,7 +31,10 @@
     &quot;last_opened_file_path&quot;: &quot;C:/laragon/www/Pizzeria_ProyectoFinal&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+<<<<<<< HEAD
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+=======
+>>>>>>> 3080c86746406e88aa629f79b9b7ef28e6ac3338
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -53,6 +56,7 @@
       <workItem from="1656952931692" duration="17873000" />
       <workItem from="1656989091314" duration="335000" />
       <workItem from="1657024260697" duration="746000" />
+      <workItem from="1656952931692" duration="18060000" />
     </task>
     <servers />
   </component>

@@ -10,7 +10,8 @@ class LoginController extends Controller
     //
     public function login(Request $request){
 
-        $usuario=User::where('usuario',$request->usuario)->where('password',$request->password)->first();
+        $usuario=User::where('usuario',$request->usuario)->first();
+
         if ($usuario){
             return response(
                 [
@@ -21,7 +22,7 @@ class LoginController extends Controller
         }
         else{
             return response([
-                'mensaje'=> 'usuario validado incorrectamente',
+                'mensaje'=> 'usuario  incorrecto',
             ]);
         }
     }
