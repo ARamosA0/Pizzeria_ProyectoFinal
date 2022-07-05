@@ -54,7 +54,15 @@ class TipoController extends Controller
         return redirect('/tipos');
     }
     public function delete_ingrediente($id_pizza){
-        return view('tipo_ingrediente.delete')->with('id_pizza',$id_pizza);
+        $ingredientes_pizza = TipoIngrediente::where('tipo_id',$id_pizza)->pluck('ingrediente_id');
+        $array=[];
+        foreach ($ingredientes_pizza as $ingrediente){
+            $buscar_ingredientes=Ingrediente::where('_id',$ingrediente)->get(['nombre']);
+            foreach ($buscar_ingredientes as $buscar){
+                array_push($array, $buscar);
+            }
+        }
+        return view('tipo_ingrediente.delete')->with('id_pizza',$id_pizza)->with('array', $array);
     }
     public function prueba()
     {

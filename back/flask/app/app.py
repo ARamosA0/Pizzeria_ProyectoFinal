@@ -98,7 +98,7 @@ def setProducto():
             }
         )
         response = jsonify({
-            '_id':str(id),
+            '_id':str(id.inserted_id),
             'tipo_id':tipo_id,
             'tamano':tamano,
             'precio':precio

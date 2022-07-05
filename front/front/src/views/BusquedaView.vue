@@ -8,7 +8,7 @@
       multiple
     >
       <v-expansion-panel>
-        <v-expansion-panel-header>Filtra por Ingrediente</v-expansion-panel-header>
+        <v-expansion-panel-header><h1>Filtra por Ingrediente</h1></v-expansion-panel-header>
         <v-expansion-panel-content>
           <v-card flat>
             <v-card-text>
@@ -32,7 +32,7 @@
             </v-card-text>
           </v-card>
           <v-btn
-            color="primary"
+            color="#FF9100"
             @click="obtTiposPizza()"
           >
             Buscar
@@ -41,7 +41,7 @@
       </v-expansion-panel>
       
       <v-expansion-panel>
-        <v-expansion-panel-header>Filtra por Rating</v-expansion-panel-header>
+        <v-expansion-panel-header><h1>Filtra por Rating</h1></v-expansion-panel-header>
         <v-expansion-panel-content>
             <row class="item2">
                 <v-col
@@ -54,7 +54,7 @@
                     <v-rating
                       v-model="rating"
                       background-color="amber"
-                      color="ambewr"
+                      color="amber"
                       length="10"
                       large
                     ></v-rating>
@@ -62,21 +62,21 @@
             </row>
         <v-btn
           class="btn-busqueda-raiting"
-          color="primary"
+          color="#FF9100"
           @click="buscRating()"
         >
           Buscar
         </v-btn>
         <v-btn
           class="btn-busqueda-raiting"
-          color="primary"
+          color="#FF9100"
           @click="buscMax()"
         >
           Maximo
         </v-btn>
         <v-btn
           class="btn-busqueda-raiting"
-          color="primary"
+          color="#FF9100"
           @click="buscMin()"
         >
           Minimo
@@ -207,7 +207,6 @@
 import axios from "axios";
 import Navar from "../components/Navar.vue";
 import FooterVue from "@/components/Footer.vue";
-import {Node, BinarySearchTree, ordenar} from "./bst.js";
 
 export default {
     name: 'busqueda',
@@ -588,24 +587,36 @@ export default {
     //   })
     // },
     async anadirProducto(id, precio){
-      await axios.get(`http://127.0.0.1:5000/api/tipos/${id}`).then((result)=>{
-        this.tipoPizzaid = result.data;
-        console.log(this.tipoPizzaid)
-        
+      await axios.get(`http://127.0.0.1:5000/api/tipos/${id}`).then((result)=>{        
+        this.tipoPizzaid.push(result.data);
+
+        localStorage.setItem('tipoPizzaId',JSON.stringify(this.tipoPizzaid))
       })
-      await axios.post("http://127.0.0.1:5000/api/producto",{
-        "tipo_id":id,
-        "tamano":this.tam,
-        "precio":precio
+      console.log(id);
+      console.log(precio);
+      console.log(this.tam);
+      await axios.post("http://127.0.0.1:5000/api/producto/",{
+        tipo_id:id,
+        tamano:this.tam,
+        precio:precio
       }).then((result)=>{
-        this.producto = result.data
-        
+        this.producto = result    
+          
+      })
+      console.log(this.producto.data)
+      await axios.post("http://127.0.0.1:5000/api/pedido",{
+        idProducto:this.producto.data._id
       })
     }
-      
     },
     created() {
       this.obIngredientes();
+      console.log(this.producto)
+    },
+    mounted(){
+      if(localStorage.tipoPizzaid){
+        this.tipoPizzaid = localStorage.tipoPizzaid
+      }
     },
   components: {
     Navar,
